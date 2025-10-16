@@ -13,6 +13,10 @@ If there is no 'PS' at the beginning of your terminal prompt, you can proceed wi
 
 After running command above, you can create your own virtual environment with the following command: 
 
+    python -m venv venv
+
+Then, you can start it by running this command:
+
     venv\Scripts\activate 
     
 After which you should install the required pip packages located in requirements.txt with the following command: 
@@ -22,6 +26,10 @@ After which you should install the required pip packages located in requirements
 Great! Now that you have successfully completed the steps above you can start the program with this command: 
 
     python -m uvicorn main:app --reload 
+
+After that, you can test API in your browser by visiting the following link:
+
+    http://127.0.0.1:8000/docs
 
 
 Linux/macOS 
@@ -41,3 +49,7 @@ After which you should install the required pip packages located in requirements
 Great! Now that you have successfully completed the steps above you can start the program with this command: 
 
     python -m uvicorn main:app --reload
+
+After that, you can test API in your browser by visiting the following link:
+
+    http://127.0.0.1:8000/docs

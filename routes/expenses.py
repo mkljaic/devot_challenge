@@ -50,6 +50,7 @@ def get_all(db: Session = Depends(get_db)):
 @router.get("/", response_model = list[schemas.ExpenseOut])
 def get_expense(
     expense_id: Optional[int] = None,
+    user_id: Optional[int] = None,
     category_id: Optional[int] = None,
     amount: Optional[float] = None,
     minmax: Optional[str] = None,
@@ -59,6 +60,9 @@ def get_expense(
 
     if expense_id:
         expense = expense.filter(models.Expense.id == expense_id)
+
+    if user_id:
+        expense = expense.filter(models.Expense.user_id == user_id)
     if category_id:
         expense = expense.filter(models.Expense.category_id == category_id)
     if amount:
