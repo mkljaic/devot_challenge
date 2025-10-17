@@ -102,11 +102,11 @@ def update_expense(expense_id: int, updated_expense: schemas.ExpenseBase, db: Se
 @router.delete("/{expense_id}")
 def delete_expense(expense_id: int, db: Session = Depends(get_db)):
     expense = db.query(models.Expense).filter_by(id = expense_id).first()
-    user = db.query(models.User).filter_by(id = expense.user_id).first()
-
+    
     if not expense:
         raise HTTPException(status_code = 404, detail = "Expense not found!")
     
+    user = db.query(models.User).filter_by(id = expense.user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found!")
     

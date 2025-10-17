@@ -43,11 +43,6 @@ def get_category(category_id: int, db: Session = Depends(get_db)):
 @router.put("/{category_id}", response_model = schemas.CategoryOut)
 def update_category(category_id: int, updated_category: schemas.CategoryBase, db: Session = Depends(get_db)):
 
-    ex_cat = db.query(models.Category).filter_by(name = updated_category.name)
-
-    if ex_cat:
-        raise HTTPException(status_code=400, detail="Category already exists")
-
     category = db.query(models.Category).filter_by(id = category_id).first()
 
     if not category:
