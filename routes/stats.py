@@ -31,7 +31,7 @@ def get_summary(uid: int, db: Session = Depends(get_db)):
     expenses = (db.query(models.Expense).filter(and_(models.Expense.user_id == uid, models.Expense.date >= month)).all())
 
     if not expenses:
-        raise HTTPException(status_code=404, detail="No expenses found for the last 30 days")
+        raise HTTPException(status_code = 404, detail = "No expenses found for the last 30 days")
 
     spent = 0
     for exp in expenses:
@@ -47,7 +47,7 @@ def get_summary(uid: int, db: Session = Depends(get_db)):
     expenses = (db.query(models.Expense).filter(and_(models.Expense.user_id == uid, models.Expense.date >= quarter)).all())
 
     if not expenses:
-        raise HTTPException(status_code=404, detail="No expenses found for the last quarter")
+        raise HTTPException(status_code = 404, detail = "No expenses found for the last quarter")
 
     spent = 0
     for exp in expenses:
@@ -63,7 +63,7 @@ def get_summary(uid: int, db: Session = Depends(get_db)):
     expenses = (db.query(models.Expense).filter(and_(models.Expense.user_id == uid, models.Expense.date >= year)).all())
 
     if not expenses:
-        raise HTTPException(status_code=404, detail="No expenses found for the last year")
+        raise HTTPException(status_code = 404, detail = "No expenses found for the last year")
 
     spent = 0
     for exp in expenses:
