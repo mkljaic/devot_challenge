@@ -13,7 +13,7 @@ router = APIRouter(
 )
 
 @router.get("/summary/all_time/{uid}", response_model = schemas.StatsOut)
-def get_summary(uid: int, db: Session = Depends(get_db)):
+def get_summary_all(uid: int, db: Session = Depends(get_db)):
     expenses = db.query(models.Expense).filter(models.Expense.user_id == uid).all()
 
     spent = 0
@@ -25,7 +25,7 @@ def get_summary(uid: int, db: Session = Depends(get_db)):
     return {"spent": spent}
 
 @router.get("/summary/monthly/{uid}", response_model = schemas.StatsOut)
-def get_summary(uid: int, db: Session = Depends(get_db)):
+def get_summary_monthly(uid: int, db: Session = Depends(get_db)):
 
     month = datetime.now().date() - timedelta(days = 30)
     expenses = (db.query(models.Expense).filter(and_(models.Expense.user_id == uid, models.Expense.date >= month)).all())
@@ -41,7 +41,7 @@ def get_summary(uid: int, db: Session = Depends(get_db)):
     return {"spent": spent}
 
 @router.get("/summary/quarterly/{uid}", response_model = schemas.StatsOut)
-def get_summary(uid: int, db: Session = Depends(get_db)):
+def get_summary_quarterly(uid: int, db: Session = Depends(get_db)):
 
     quarter = datetime.now().date() - relativedelta(months = 3)
     expenses = (db.query(models.Expense).filter(and_(models.Expense.user_id == uid, models.Expense.date >= quarter)).all())
@@ -57,7 +57,7 @@ def get_summary(uid: int, db: Session = Depends(get_db)):
     return {"spent": spent}
 
 @router.get("/summary/yearly/{uid}", response_model = schemas.StatsOut)
-def get_summary(uid: int, db: Session = Depends(get_db)):
+def get_summary_yearly(uid: int, db: Session = Depends(get_db)):
 
     year = datetime.now().date() - relativedelta(year = 1)
     expenses = (db.query(models.Expense).filter(and_(models.Expense.user_id == uid, models.Expense.date >= year)).all())

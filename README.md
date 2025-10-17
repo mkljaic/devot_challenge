@@ -53,3 +53,8 @@ Great! Now that you have successfully completed the steps above you can start th
 After that, you can test API in your browser by visiting the following link:
 
     http://127.0.0.1:8000/docs
+
+
+Also, you can run automated tests by running this command:
+
+    python -m pytest
